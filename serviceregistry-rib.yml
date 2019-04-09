@@ -7,3 +7,6 @@ eureka:
     register-with-eureka: false
   server:
     enable-self-preservation: false
+
+
+test: eee
