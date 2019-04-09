@@ -1,0 +1,10 @@
+management.endpoints.web.exposure.include: "*"
+management:
+  endpoint:
+    metrics.enabled: true
+    prometheus.enabled: true
+    routes.enabled: true
+    health:
+      show-details: ALWAYS
+
+logging.level.org.springframework.security: DEBUG
