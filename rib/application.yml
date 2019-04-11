@@ -8,3 +8,8 @@ management:
       show-details: ALWAYS
 
 logging.level.org.springframework.security: DEBUG
+
+
+logging:
+  file: '/var/log/${spring.application.name}.log'
+  path: '/var/log/'
