@@ -1,3 +1,7 @@
+spring:
+  jpa:
+    properties:
+      hibernate.dialect: biz.ep.proc.rib.conf.HibernatePostgresDialect
 
 
 logging:
