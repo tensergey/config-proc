@@ -8,4 +8,20 @@ logging:
   file: /var/log/backServer.log
   path: /var/log/
 
-server.port: 8082
+server.port: 8083
+
+#Очередь которую прослушивает фронт, для получения статуса авторизации
+back:
+  poller:
+    pool.size: 20
+    fixedDelay: 100
+    max.message: 100
+  first:
+  script:
+    #От какого имени будем оптарвлять почту
+    email.from: 'reestr@europlat.biz'
+    path:
+      php: '/bin/php'
+      python: '/bin/python'
+      roots:
+        - '/opt/script'
