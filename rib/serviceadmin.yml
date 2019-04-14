@@ -1,6 +1,11 @@
 server:
   port: ${PORT:9999}
+  servlet:
+    context-path: /admin-mon
 
 logging:
   file: /var/log/admin.log
   path: /var/log/
+
+
+
