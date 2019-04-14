@@ -1,6 +1,6 @@
 server:
   port: ${PORT:9999}
-
+  use-forward-headers: true
 
 spring.boot.admin.context-path: /admin-mon
 
