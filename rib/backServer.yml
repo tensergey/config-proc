@@ -33,7 +33,7 @@ back:
   first:
   script:
     #От какого имени будем оптарвлять почту
-    email.from: 'reestr@europlat.biz'
+    email.from: 'billinger@ribank.ru'
     path:
       php: '/bin/php'
       python: '/bin/python'
