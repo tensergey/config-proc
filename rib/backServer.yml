@@ -8,7 +8,7 @@ spring:
     port: 465
     username: 'billinger@ribank.ru'
     password: '1qaz!QAZ'
-    protocol: smtp
+    protocol: smtps
     properties:
       mail.smtp:
         auth: true
