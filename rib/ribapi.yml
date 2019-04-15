@@ -7,8 +7,8 @@ spring:
 logging:
   file: /var/log/ribapi.log
   path: /var/log/
-  level:
-    biz.ep.proc.rib.filter.StubLoggingFilter: error
+#  level:
+#    biz.ep.proc.rib.filter.StubLoggingFilter: error
 
 server.port: 8081
 
