@@ -2,6 +2,20 @@ spring:
   jpa:
     properties:
       hibernate.dialect: biz.ep.proc.back.HibernatePostgresDialect
+  mail:
+    default-encoding: utf-16
+    host: smtp.yandex.ru
+    port: 465
+    username: 'billinger@ribank.ru'
+    password: '1qaz!QAZ'
+    protocol: smtp
+    properties:
+      mail.smtp:
+        auth: true
+        starttls.enable: true
+        connectiontimeout: 5000
+        timeout: 3000
+        writetimeout: 5000
 
 
 logging:
