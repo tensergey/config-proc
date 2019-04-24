@@ -40,3 +40,14 @@ rib:
       CYBERPLAT:
         providerKd: 1223
         account: "purse"
+  template:
+    payport-wallet: 500000
+    #агент который содержит меррчантов
+    service-id: 10
+    #сервис
+    rib-wallet: 1000
+    #агент РИБ
+    vendor-id: 500100
+    #Вендор от которого копируем все данныне
+    contract-provider: 1051
+    #контракт с БРС
