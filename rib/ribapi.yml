@@ -12,6 +12,10 @@ logging:
 
 server.port: 8081
 
+#коммисия расчитывается от суммы принято
+calc:
+  from: true
+
 rib:
   refill:
     provider-kd: 1010

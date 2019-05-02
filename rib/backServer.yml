@@ -6,8 +6,8 @@ spring:
     default-encoding: utf-16
     host: smtp.yandex.ru
     port: 465
-    username: 'billinger@ribank.ru'
-    password: '1qaz!QAZ'
+    username: '{cipher}32f0388da77d6c6c637e87187afc925f8c6c5c54a3a7d8508332b26f30d59b89c66403eaa55303c59c59b87b342f9109'
+    password: '{cipher}10240281c94d10ce07fcc666b9356b2ad59e1e7bbb8b8818e7c666bb38f82d8a'
     protocol: smtps
     properties:
       mail.smtp:
@@ -23,6 +23,10 @@ logging:
   path: /var/log/
 
 server.port: 8083
+
+#коммисия расчитывается от суммы принято
+calc:
+  from: true
 
 #Очередь которую прослушивает фронт, для получения статуса авторизации
 back:
