@@ -1,7 +1,7 @@
 spring:
   jpa:
     properties:
-      hibernate.dialect: biz.ep.proc.rib.conf.HibernatePostgresDialect
+      hibernate.dialect: biz.ep.proc.back.database.core.HibernatePostgresDialect
 
 
 logging:

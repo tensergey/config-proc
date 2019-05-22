@@ -1,7 +1,7 @@
 spring:
   jpa:
     properties:
-      hibernate.dialect: biz.ep.proc.back.HibernatePostgresDialect
+      hibernate.dialect: biz.ep.proc.back.database.core.HibernatePostgresDialect
   mail:
     default-encoding: utf-16
     host: smtp.yandex.ru
