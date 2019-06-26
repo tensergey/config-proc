@@ -14,5 +14,5 @@ server:
   servlet:
     context-path: /api
 
-#management:
-#  context-path: /api
+management:
+  context-path: /api
