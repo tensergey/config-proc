@@ -1,0 +1,18 @@
+spring:
+  jpa:
+    properties:
+      hibernate.dialect: biz.ep.proc.back.database.core.HibernatePostgresDialect
+
+
+logging:
+  file: /var/log/jsonapi.log
+  path: /var/log/
+
+server.port: 8082
+
+server:
+  servlet:
+    context-path: /api
+
+management:
+  context-path: /api

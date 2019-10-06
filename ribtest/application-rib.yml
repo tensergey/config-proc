@@ -1,0 +1,5 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://app1:8761/eureka/,http://app2:8761/eureka/
+    enabled: true

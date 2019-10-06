@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://appdb:5432/postgres
+    username: '{cipher}1d995a3cf78b65424e93236da7955bc75f8498f9a95e4f49803e749b85cd049f'
+    password: '{cipher}1d995a3cf78b65424e93236da7955bc75f8498f9a95e4f49803e749b85cd049f'
+  jpa:
+    properties:
+      hibernate.jdbc.lob.non_contextual_creation: true

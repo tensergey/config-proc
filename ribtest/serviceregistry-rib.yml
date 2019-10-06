@@ -1,0 +1,7 @@
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+  server:
+    enable-self-preservation: true
