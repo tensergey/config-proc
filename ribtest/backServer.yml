@@ -24,6 +24,7 @@ logging:
   path: /var/log/
   level:
     org.hibernate.SQL: info
+    biz.ep: debug
 
 server.port: 8083
 
