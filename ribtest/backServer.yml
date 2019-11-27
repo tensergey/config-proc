@@ -1,5 +1,6 @@
 spring:
   jpa:
+    show-sql: false
     properties:
       hibernate.dialect: biz.ep.proc.back.database.core.HibernatePostgresDialect
   mail:
@@ -21,6 +22,8 @@ spring:
 logging:
   file: /var/log/backServer.log
   path: /var/log/
+  level:
+    org.hibernate.SQL: info
 
 server.port: 8083
 
