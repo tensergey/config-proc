@@ -1,6 +1,6 @@
 logging:
   pattern:
-    file: "%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --%15.15mdc{trnId}--%15.15mdc{serialNn}-- [%t] %-40.40logger{39}: %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"
+    file: "%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } [%36.36mdc{requestId}/%15.15mdc{trnId}|%6.6mdc{serialNn}]- [%t] %-40.40logger{39}: %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"
   file: '/var/log/rib/${name}.log'
   path: '/var/log/rib/'
 

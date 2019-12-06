@@ -5,8 +5,8 @@ spring:
 
 
 logging:
-  file: /var/log/ribapi.log
-  path: /var/log/
+  file: /var/log/rib/ribapi.log
+  path: /var/log/rib/
 #  level:
 #    biz.ep.proc.rib.filter.StubLoggingFilter: error
 
