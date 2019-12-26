@@ -1,3 +1,12 @@
+logging:
+  pattern:
+    file: "%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --%15.15mdc{trnId}--%15.15mdc{serialNn}-- [%t] %-40.40logger{39}: %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"
+  file: '/var/log/rib/${name}.log'
+  path: '/var/log/rib/'
+
+logging.file.max-size: 1000MB
+logging.level.org.springframework.security: DEBUG
+
 management.endpoints.web.exposure.include: "*"
 management:
   endpoint:
@@ -6,10 +15,3 @@ management:
     routes.enabled: true
     health:
       show-details: ALWAYS
-
-logging.level.org.springframework.security: DEBUG
-
-
-logging:
-  file: '/var/log/${name}.log'
-  path: '/var/log/'
