@@ -19,8 +19,8 @@ spring:
 
 
 logging:
-  file: /var/log/backServer.log
-  path: /var/log/
+  file: /opt/service/backServer/log/backServer.log
+  path: /opt/service/backServer/log/
 
 server.port: 8083
 
