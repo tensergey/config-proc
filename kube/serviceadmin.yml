@@ -3,6 +3,14 @@ server:
   use-forward-headers: true
 
 spring.boot.admin.context-path: /admin-mon
+
+spring.cloud.kubernetes:
+  enabled: true
+  discovery:
+    enabled: true
+    service-labels:
+      spring-boot: true
+
 #
 #logging:
 #  file: /var/log/admin.log
