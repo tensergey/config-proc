@@ -15,3 +15,14 @@ management:
     routes.enabled: true
     health:
       show-details: ALWAYS
+
+spring:
+  cloud:
+    discovery:
+      client:
+        health-indicator:
+          enabled: false
+
+    loadbalancer:
+      ribbon:
+        enabled: false
