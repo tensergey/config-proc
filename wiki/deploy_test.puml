@@ -1,0 +1,56 @@
+@startuml
+
+node testapp1 [
+10.10.33.7
+---
+kafka
+zookeeper
+====
+<b>servicerregistry</b>
+<b>serviceadmin</b>
+<b>ribapi</b>
+<b>jsonapi</b>
+....
+node_export
+kafka_export
+]
+
+node testapp2 [
+10.10.33.5
+---
+kafka
+zookeeper
+====
+<b>servicerregistry</b>
+<b>backServer</b>
+....
+node_export
+kafka_export
+]
+
+database testdb [
+10.10.33.?
+---
+kafka
+zookeeper
+====
+mongo(docker)
+<b>configservice</b>
+....
+node_export
+database_export
+kafka_export
+]
+
+database testmongo [
+10.10.33.?
+---
+mongo
+====
+prometeus
+grafana
+....
+node_export
+micrometr_export
+]
+@enduml
