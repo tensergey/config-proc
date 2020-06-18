@@ -1,0 +1,58 @@
+@startuml
+' uncomment the line below if you're using computer with a retina display
+' skinparam dpi 300
+!define Table(name,desc) class name as "desc" << (T,#FFAAAA) >>
+' we use bold for primary key
+' green color for unique
+' and underscore for not_null
+!define pk(x) <b>x</b>
+!define unq(x) <color:green>x</color>
+!define mnd(x) <u>x</u>
+' other tags available:
+' <i></i>
+' <back:COLOR></color>, where color is a color name or html color code
+' (#FFAACC)
+' see: http://plantuml.com/classes.html#More
+hide methods
+hide stereotypes
+
+' entities
+title Принципиальная схема бд хранения транзакции
+
+Table(pr_contract_subject, "контракт"){
+    ID Идентификатор
+    VERSION Версия
+    SUBJECT_KDS Предмет договора провайдер/шлюз
+    AGENT_UP_ID Верхний агент
+    AGENT_DOWN_ID Нижний агент
+    ACC_AGENT_UP_ID Счета для верхнего агента
+    ACC_AGENT_DOWN_ID Счета для нижнего агента
+    CONTRACT_NM Номер/наименование контракта
+    START_DT Старт контракта
+    STATE Состояние договора
+    DATE_CREATED Когда создан
+    LAST_UPDATED Когда изменен
+}
+
+Table(pr_agent, "агент"){
+}
+
+Table(pr_provider_tarif, "тариф контракта для провайдера"){}
+Table(pr_tarif_detail, "тариф"){}
+Table(pr_tarif_detail_item, "расчет тарифа"){}
+pr_tarif_detail_item -> pr_tarif_detail
+Table(pr_acc_contract_down, "счета для нижнего агента"){}
+Table(pr_acc_contract_up, "счета для верхнего агента"){}
+
+Table(pr_provider, "pr_provider провайдеры") {}
+
+pr_provider_tarif --> pr_tarif_detail: Сколько нижнему
+pr_provider_tarif --> pr_tarif_detail: Сколько нижнему
+pr_provider_tarif -> pr_provider
+
+pr_contract_subject --> pr_agent : Верхний агент
+pr_contract_subject --> pr_acc_contract_up : счета для верхнего агента
+pr_contract_subject --> pr_agent : Нижний агент
+pr_contract_subject --> pr_acc_contract_down : счета для нижнего агента
+pr_provider_tarif --> pr_contract_subject
+@enduml
