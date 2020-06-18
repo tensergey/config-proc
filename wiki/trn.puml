@@ -1,0 +1,88 @@
+@startuml
+' uncomment the line below if you're using computer with a retina display
+' skinparam dpi 300
+!define Table(name,desc) class name as "desc" << (T,#FFAAAA) >>
+' we use bold for primary key
+' green color for unique
+' and underscore for not_null
+!define pk(x) <b>x</b>
+!define unq(x) <color:green>x</color>
+!define mnd(x) <u>x</u>
+' other tags available:
+' <i></i>
+' <back:COLOR></color>, where color is a color name or html color code
+' (#FFAACC)
+' see: http://plantuml.com/classes.html#More
+hide methods
+hide stereotypes
+
+' entities
+title Принципиальная схема бд хранения транзакции
+
+Table(pr_trn, "pr_trn основная таблица") {
+    pk(ID) Идентификатор транзакции
+    VERSION Версия для ансинхрронной развязки
+    unq(TRN_ID) Номер транзакции внешний входящий
+    unq(TERMINAL_ID) Идентификатор теримнала
+    ADMIN_ID Идентификатор админа
+    AGENT_ID Идентификатор агента
+    REGISTER_DT Дата регистрации транзакции
+    LIVE_TIME_DT Дата смерти транзакции
+    PROVIDER_ID Идентификатор провайдера
+    GATE_ID Идентификатор шлюза
+    VENDOR_ID Идентификатор вендора
+    ACCOUNT_VL Основное поле реквизита
+    AMOUNT_FROM_SM Сумма принято
+    AMOUNT_TO_SM Сумма отправленно
+    TRN_STATUS_KDS Статус платежа
+    CODE_ERROR Код ошибки платежа
+    JOB_DT Дата когда обработали платеж
+    TICKET_DT Дата по чеку
+    TICKET_UID Номер чека
+    TRN_AUTH_ID Транзакция проверки
+    DATE_CREATED Когда создан
+    LAST_UPDATED Когда измененн
+    VENDOR_SEND_COUNT Сколько раз отправляли сообщение
+    VENDOR_TRN_ID Идентиифкатор транзакции у вендора
+    TRN_TO_VENDOR_ID Идентификатор транзакции\n который передается вендору
+    TEST_KD Содержит код теста, спарвочника нет может менятся
+    AUTH_AGENT_ID Агент который прошел авторизацию
+    FIN_AGENT_ID Агент который торгует баблом
+    GATE_PICK_SM Сколько должен нам агрегатор
+    GATE_GIVEAWAY_SM Сколько мы ему должны
+    GATE_AGENT_ID идетификатор агента который \n должен провести платеж
+    NONCASH Безналичный расчет
+    DELAY_SECOND задержка в обработки транзакции в секундах
+    TERMINAL_DABBLE_ID Дубликат терминала
+    REFUND_ID Основной платеж который возращаем
+}
+
+Table(pr_trn_ext, "pr_trn_ext Значения \nполей провайдера") {}
+Table(pr_trn_vend_ext, "pr_trn_vend_ext \nЗначения полей вендора") {}
+Table(pr_trn_note, "pr_trn_note коментарии") {}
+Table(pr_trn_step, "pr_trn_step пройденные шаги") {}
+Table(pr_trn_path_contract, "pr_trn_path_contract список контрактов") {}
+Table(pr_trn_posting_new, "pr_trn_posting_new проводки") {}
+Table(pr_provider, "pr_provider провайдеры") {}
+Table(pr_vendor, "pr_vendor вендоры") {}
+Table(pr_gate, "pr_gate шлюзы") {}
+Table(pr_point, "pr_point платежный точки") {}
+
+
+pr_trn --> pr_gate : Шлюз
+pr_trn --> pr_vendor : Вендор
+pr_trn --> pr_provider : Провайдер
+pr_trn --> pr_point
+pr_trn_ext --> pr_trn
+pr_trn_vend_ext --> pr_trn
+pr_trn_note --> pr_trn
+pr_trn_path_contract --> pr_trn
+pr_trn_posting_new --> pr_trn
+pr_trn_step --> pr_trn
+'Client --> Agent
+'Terminal --> TerminalType
+'TerminalAccEntity --> Terminal
+'DocumentMain --> Client
+'ClientAccEntity --> Client
+
+@enduml

@@ -1,0 +1,131 @@
+@startuml
+' uncomment the line below if you're using computer with a retina display
+' skinparam dpi 300
+!define Table(name,desc) class name as "desc" << (T,#FFAAAA) >>
+' we use bold for primary key
+' green color for unique
+' and underscore for not_null
+!define pk(x) <b>x</b>
+!define unq(x) <color:green>x</color>
+!define mnd(x) <u>x</u>
+' other tags available:
+' <i></i>
+' <back:COLOR></color>, where color is a color name or html color code
+' (#FFAACC)
+' see: http://plantuml.com/classes.html#More
+hide methods
+hide stereotypes
+
+' entities
+title Принципиальная схема бд хранения мерчанта/клиента
+
+
+Table(pr_trn, "платеж") {}
+
+Table(pr_point, "платежна точка/мерчант/клиент") {
+  pk(ID) Идентификатор терминала
+  VERSION Версия для ансинхрронной развязки
+  POINT_NN Код теримнала
+  TRM_STATUS_KDS Статус терминала
+  AGENT_ID ID Агента
+  KLADR_KDS Код КЛАДР
+  ADDRESS_DSCRP Адрес описание дальше кода
+  DATE_CREATED Когда создан
+  LAST_UPDATED Когда измененн
+  LAST_CHANGER_ID
+  TYPE_KD
+  DTYPE поле дискриминатора
+  CLIENT_WALLET_ID ссылка на клиента кошелька
+  AGENT_INFO_ID
+}
+
+Table(pr_point_acc, "счета точки приема") {
+    pk(ID) Идентификатор админа
+    VERSION Версия для ансинхрронной развязки
+    ACC_NN Счет
+    POINT_ID Идентификатор юр лица
+    ACC_GROUP_ID Идентификатор типа
+    DATE_CREATED Когда создан
+    LAST_UPDATED Когда измененн
+}
+
+Table(pr_agent, "агент") {
+    pk(ID) Идентификатор агента
+    VERSION Версия для ансинхрронной развязки
+    ACTIVE_PR Агент активен
+    AGENT_KD Код агента
+    AGENT_NM Наименование агента
+    PARENT_AGENT_ID Головной агент
+    DATE_CREATED Когда создан
+    LAST_UPDATED Когда изменен
+    FINANS_PR Агент является финансовым
+}
+
+Table(pr_agent_acc_new, "счета агента") {
+    pk(ID) Идентификатор админа
+    VERSION Версия для ансинхрронной развязки
+    AGENT_ID Номер агента
+    AGENT_LINK_ID
+    ACC_NN Счет
+    ACC_GROUP_ID Идентификатор типа
+    DATE_CREATED Когда создан
+    LAST_UPDATED Когда измененн
+}
+
+Table(pr_client_wallet, "расширенная информация клиента") {
+    pk(ID) Идентификатор точки
+    VERSION Версия для развязки
+    CLIENT_IDENT
+    FIRST_NM
+    MIDDLE_NM
+    LAST_NM
+    EMAIL_NM
+    PHONE_NM
+    BIRTH_DT
+    BIRTH_PLACE_NM
+    REGISTRATION_ADDRESS_NM
+    RESIDENTIAL_ADDRESS_NM
+    RESIDENT_PR
+    DATE_CREATED Когда создан
+    LAST_UPDATED Когда изменен
+}
+
+Table(pr_point_tag, "теги точки") {
+}
+
+Table(pr_agent_info_acc, "счета риба") {
+    pk(ID) Идентификатор
+    VERSION Версия для развязки
+    AGENT_INFO_ID
+    ACCOUNT_KEY тип счета
+    ACCOUNT_NN номер счета
+    ACCOUNT_NAME наименование счета
+    DATE_CREATED Когда создан
+    LAST_UPDATED Когда изменен
+    RIB_GATE_AGENT_ID
+}
+
+Table(pr_agent_info, "расширенная информация мерчанта") {
+    pk(ID) Идентификатор
+    VERSION Версия для развязки
+    NAME Наименование организиции
+    INN ИНН
+    KPP КПП
+    OGRN ОГРН
+    DIRECTOR ФИО руководителя или ИП
+    AGREEMENT_NUMBER Номер договора
+    AGREEMENT_TYPE Тип договора
+    DATE_CREATED Когда создан
+    LAST_UPDATED Когда изменен
+}
+
+pr_trn -> pr_point
+pr_point -> pr_agent
+pr_agent --> pr_agent
+pr_point --> pr_agent_info : для мерчантов, \n для кошельков только счет
+pr_agent_info_acc -> pr_agent_info
+pr_point_tag --> pr_point
+pr_point --> pr_client_wallet
+pr_agent_acc_new --> pr_agent
+pr_point_acc --> pr_point
+@enduml
