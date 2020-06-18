@@ -1,0 +1,17 @@
+@startuml
+title Передача платежа
+Actor client
+boundary nginx
+client -> nginx: шифрование, \n аутификация
+nginx -> ribapi: авторизация, \nвалидиция
+Database database
+ribapi --> database: сохранения платежа
+Queue kafka
+ribapi -> kafka: передача сообщения
+kafka -> backServer: получаем сообщение
+database --> backServer: загружаем платеж
+====обработка платежа==
+backServer->gatewayabs: запрос реквизитов \n счета, банка и т.д.
+backServer->backServer: проверка статус\n  для выплат
+backServer->database: сохранение \n статуса обработки
+@enduml
