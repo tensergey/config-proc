@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://node3:5432/postgres
+    username: '{cipher}1d995a3cf78b65424e93236da7955bc75f8498f9a95e4f49803e749b85cd049f'
+    password: '{cipher}1d995a3cf78b65424e93236da7955bc75f8498f9a95e4f49803e749b85cd049f'
+    hikari:
+      connection-timeout: 30000
+      idle-timeout: 360000
+      maximum-pool-size: 150
+      minimum-idle: 10
+
+  jpa:
+    properties:
+      hibernate.jdbc.lob.non_contextual_creation: true
