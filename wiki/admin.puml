@@ -1,0 +1,79 @@
+@startuml
+' uncomment the line below if you're using computer with a retina display
+' skinparam dpi 300
+!define Table(name,desc) class name as "desc" << (T,#FFAAAA) >>
+' we use bold for primary key
+' green color for unique
+' and underscore for not_null
+!define pk(x) <b>x</b>
+!define unq(x) <color:green>x</color>
+!define mnd(x) <u>x</u>
+' other tags available:
+' <i></i>
+' <back:COLOR></color>, where color is a color name or html color code
+' (#FFAACC)
+' see: http://plantuml.com/classes.html#More
+hide methods
+hide stereotypes
+
+' entities
+title Принципиальная схема бд хранения пользователя
+
+Table(pr_admin, "пользователь"){
+    id идентификатор
+    version версия
+    login_nm логин
+    active_pr активен
+    admin_profile_id ссылка на профиль
+    agent_default_id ссылка на агента, которого \nможем использовать
+    email почта
+    first_nm имя
+    last_nm фамилия
+    midle_nm отчество
+    date_created дата создания
+    last_updated дата обновления
+    private_key_rib приватный ключ риба
+}
+
+Table(pr_admin_profile, "расширенные свойства \nпользователя"){
+}
+
+Table(pr_admin_group_group, "связь группы"){
+    admin_id
+    admin_group_id
+}
+
+Table(pr_admin_group, "группа"){
+}
+
+Table(pr_admin_group_permission, "список прав группы"){
+}
+
+Table(pr_permission, "наименование права"){
+}
+
+Table(pr_admin_cert, "сертификат админа"){
+    id
+    version
+    active_pr
+    admin_id
+    cert_bl
+    dncert_str
+    serial_nn
+    start_dt
+    finish_dt
+    date_created
+    last_updated
+}
+
+Table(pr_agent, "агент"){
+}
+
+pr_admin_group_permission --> pr_permission
+pr_admin_group_permission --> pr_admin_group
+pr_admin --> pr_admin_profile
+pr_admin_group_group --> pr_admin_group
+pr_admin_group_group --> pr_admin
+pr_admin -> pr_agent
+pr_admin_cert --> pr_admin
+@enduml
