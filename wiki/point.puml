@@ -119,6 +119,10 @@ Table(pr_agent_info, "расширенная информация мерчант
     LAST_UPDATED Когда изменен
 }
 
+Table(pr_provider, "pr_provider провайдеры") {}
+Table(pr_vendor, "pr_vendor вендоры") {}
+Table(pr_gate, "pr_gate шлюзы") {}
+
 pr_trn -> pr_point
 pr_point -> pr_agent
 pr_agent --> pr_agent
@@ -128,4 +132,5 @@ pr_point_tag --> pr_point
 pr_point --> pr_client_wallet
 pr_agent_acc_new --> pr_agent
 pr_point_acc --> pr_point
+
 @enduml

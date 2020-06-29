@@ -17,7 +17,7 @@ hide methods
 hide stereotypes
 
 ' entities
-title Принципиальная схема бд хранения транзакции
+title Принципиальная схема бд хранения контракта для шлюза
 
 Table(pr_contract_subject, "контракт"){
     ID Идентификатор
@@ -37,6 +37,11 @@ Table(pr_contract_subject, "контракт"){
 Table(pr_agent, "агент"){
 }
 
+Table(pr_rib_gate_agent, "Агент имеет право на шлюз"){
+
+}
+
+
 Table(pr_provider_tarif, "тариф контракта для провайдера"){}
 Table(pr_vendor_tarif, "тариф контракта для вендора"){}
 Table(pr_tarif_detail, "тариф"){}
@@ -54,7 +59,7 @@ pr_vendor_tarif -> pr_tarif_detail : Сколько нижнему
 pr_vendor_tarif -> pr_tarif_detail : Сколько верхнему
 pr_vendor_tarif --> pr_vendor
 pr_vendor_tarif --> pr_gate
-pr_gate -> pr_contract_subject
+pr_gate ---> pr_contract_subject
 
 pr_contract_subject --> pr_agent : Верхний агент
 pr_contract_subject --> pr_acc_contract_up : счета для верхнего агента
@@ -62,4 +67,9 @@ pr_contract_subject --> pr_agent : Нижний агент
 pr_contract_subject --> pr_acc_contract_down : счета для нижнего агента
 pr_contract_subject ---> pr_contract_party_vendor
 pr_provider_tarif --> pr_contract_subject
+
+pr_rib_gate_agent-->pr_agent
+pr_rib_gate_agent-->pr_gate
+pr_rib_gate_agent-->pr_vendor
+
 @enduml
