@@ -1,0 +1,4 @@
+  
+spring:
+  kafka:
+    bootstrap-servers: test_app1:9092,test_app2:9092,test_app3:9092
