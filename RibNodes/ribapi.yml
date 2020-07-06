@@ -1,0 +1,58 @@
+spring:
+  jpa:
+    properties:
+      hibernate.dialect: biz.ep.proc.back.database.core.HibernatePostgresDialect
+
+
+logging:
+  file: /var/log/rib/ribapi.log
+  path: /var/log/rib/
+#  level:
+#    biz.ep.proc.rib.filter.StubLoggingFilter: error
+
+server.port: 8081
+
+#коммисия расчитывается от суммы принято
+calc:
+  from: true
+
+rib:
+  abs-gate-way-account-balance: http://192.168.5.124:8082/sqlbatch/get/balanseaccount
+  refill:
+    provider-kd: 1010
+  payout:
+    vendor:
+      BANK:
+        providerKd: 1110
+        account: "payee_inn"
+      #Пластиковая карта Visa/MasterCard;
+      CARD:
+        providerKd: 1120
+        account: "card_pan"
+      #Кошелек Яндекс.Деньги;
+      YANDEX:
+        providerKd: 1130
+        account: "purse"
+      #Кошелек QIWI
+      QIWI:
+        providerKd: 1140
+        account: "purse"
+      #Кошелек WebMoney
+      WEBMONEY:
+        providerKd: 1150
+        account: "purse"
+      #Получатели Киберплат.
+      CYBERPLAT:
+        providerKd: 1160
+        account: "purse"
+  template:
+    payport-wallet: 500000
+    #агент который содержит меррчантов
+    service-id: 10
+    #сервис
+    rib-wallet: 1000
+    #агент РИБ
+    vendor-id: 500100
+    #Вендор от которого копируем все данныне
+    contract-provider: 1051
+    #контракт с БРС
