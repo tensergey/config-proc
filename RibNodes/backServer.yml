@@ -1,0 +1,49 @@
+spring:
+  jpa:
+    show-sql: false
+    properties:
+      hibernate.dialect: biz.ep.proc.back.database.core.HibernatePostgresDialect
+  mail:
+    default-encoding: utf-16
+    host: smtp.yandex.ru
+    port: 465
+    username: '{cipher}32f0388da77d6c6c637e87187afc925f8c6c5c54a3a7d8508332b26f30d59b89c66403eaa55303c59c59b87b342f9109'
+    password: '{cipher}10240281c94d10ce07fcc666b9356b2ad59e1e7bbb8b8818e7c666bb38f82d8a'
+    protocol: smtps
+    properties:
+      mail.smtp:
+        auth: true
+        starttls.enable: true
+        connectiontimeout: 5000
+        timeout: 3000
+        writetimeout: 5000
+
+
+logging:
+  file: /var/log/backServer.log
+  path: /var/log/
+  level:
+    org.hibernate.SQL: info
+    biz.ep: debug
+
+server.port: 8083
+
+#коммисия расчитывается от суммы принято
+calc:
+  from: true
+
+#Очередь которую прослушивает фронт, для получения статуса авторизации
+back:
+  poller:
+    pool.size: 20
+    fixedDelay: 100
+    max.message: 100
+  first:
+  script:
+    #От какого имени будем оптарвлять почту
+    email.from: 'billinger@ribank.ru'
+    path:
+      php: '/bin/php'
+      python: '/bin/python'
+      roots:
+        - '/opt/script'
