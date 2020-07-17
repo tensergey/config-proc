@@ -1,6 +1,6 @@
 spring:
   data:
     mongodb:
-      host: test_db
+      host: testdb
       port: 27017
       database: logger
