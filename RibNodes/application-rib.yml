@@ -1,5 +1,5 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://test_app1:8761/eureka/,http://test_app2:8761/eureka/
+      defaultZone: http://testapp1:8761/eureka/,http://testapp2:8761/eureka/
     enabled: true
